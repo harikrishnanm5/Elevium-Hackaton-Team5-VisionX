@@ -1,0 +1,30 @@
+================================================================================
+                    ELEVIUM HACKATHON 2026 - FINAL SUBMISSION
+================================================================================
+
+PROJECT TITLE:
+Elevium: Edge AI-Powered EV Battery Thermal Runaway Early Detection & Active Safety Interlock System
+
+OFFICIAL GITHUB REPOSITORY LINK:
+https://github.com/harikrishnanm5/Elevium-Hackaton-Team5-VisionX
+
+TEAM DETAILS:
+Team Name: Team Vision X (Team 5)
+
+TEAM MEMBERS:
+1. Hari Krishnan M  - Embedded Firmware, TinyML Pipeline & System Integration
+2. Srimathi M       - Sensor Interface Engineering & Hardware Integration
+3. Sri Gayatri G    - Thermodynamic Modeling & Dataset Synthesis
+4. Udaya Sankar K   - Power Electronics, Relay Interlocks & Actuation Subsystems
+
+PROJECT ASSETS INCLUDED IN SUBMISSION:
+- Complete C++ / Arduino Firmware: EV_Battery_Project.ino
+- Pre-Trained Edge AI Flash Trees: model_trees.h (50 Classifier + 150 Regressor Trees)
+- Edge Inference Engine: random_forest_model.h
+- Sensor & Actuator Drivers: ds18b20_sensor.h, acs712_sensor.h, voltage_sensor.h, relay_control.h
+- IoT Telemetry Driver: wifi_communication.h
+- Project Documentation & Gallery: README.md & docs/assets/
+- Presentation Slide Deck: docs/presentation/Team_VisionX_Elevium_Presentation.pptx
+- Hardware Demonstration Video: media/Elevium_Hardware_Demonstration.mp4
+
+================================================================================
