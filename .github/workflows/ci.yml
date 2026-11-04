@@ -1,0 +1,51 @@
+name: Elevium Firmware & C++ CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build & Verify C++ Inference Engine
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up GCC / Clang
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+    - name: Compile Inference Engine Smoke Test
+      run: |
+        cat << 'EOF' > ci_test.cpp
+        #include <iostream>
+        #include <cmath>
+        #include <cstdint>
+        #include <cstring>
+
+        #define PROGMEM
+        #define pgm_read_ptr(addr) (*(const void* const*)(addr))
+        #define pgm_read_float(addr) (*(const float*)(addr))
+        #define memcpy_P memcpy
+
+        #include "model_trees.h"
+        #include "random_forest_model.h"
+
+        int main() {
+            float f_test[8] = {32.0f, 32.5f, 31.8f, -0.5f, 0.7f, -0.2f, 1.2f, 3.8f};
+            int risk = predictRiskClass(f_test);
+            float core = predictCoreTemperature(f_test);
+            std::cout << "CI Verification -> Risk: " << risk << " | Core Temp: " << core << " C" << std::endl;
+            if (std::isnan(core) || core < 0.0f || core > 150.0f) {
+                return 1;
+            }
+            return 0;
+        }
+        EOF
+        g++ -O2 ci_test.cpp -o ci_test
+        ./ci_test
